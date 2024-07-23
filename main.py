@@ -3,8 +3,8 @@ from PIL import Image
 from sentence_transformers import SentenceTransformer
 import vecs
 import os
-DB_CONNECTION = 'postgresql://deno-db_owner:LEpAt7IKqDU3@ep-falling-glade-a1x054bs.ap-southeast-1.aws.neon.tech/deno-db?sslmode=require'
 
+DB_CONNECTION = os.getenv('DB_CONNECTION')
 vx = vecs.create_client(DB_CONNECTION)
 images = vx.get_collection(name="image_vectors")
 
@@ -33,12 +33,6 @@ def seed():
                 {"type": "jpg"}  # associated  metadata
             ))
 
-    # for i in ls:
-    #     path = f'images/flower_{i}.jpg'
-    #     with open(path, 'wb+') as f:
-    #         res = supabase_client.storage.from_('flowers').download(path)
-    #         f.write(res)
-
     # add records to the *images* collection
     images.upsert(
         vectors=vectors
@@ -66,13 +60,8 @@ def search(query_string):
         limit=10,                            # number of records to return
         # filters={"type": {"$eq": "jpg"}},   # metadata filters
     )
-    # result = results[0]
+
     return results
-    # print(result)
-    # plt.title(result)
-    # image = mpimg.imread('./images/' + result)
-    # plt.imshow(image)
-    # plt.show()
 
 
 
