@@ -83,5 +83,3 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 For any questions or inquiries, please contact [zardamhussain@gmail.com](mailto:zardamhussain@gmail.com).
 
 ---
-
-Feel free to customize this README file as per your project's specifics.
